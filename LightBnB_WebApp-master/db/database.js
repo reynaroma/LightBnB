@@ -93,7 +93,7 @@ const addUser = function (user) {
  * @param {string} guest_id The id of the user.
  * @return {Promise<[{}]>} A promise to the reservations.
  */
-const getAllReservations = function (guest_id = 123, limit = 5) {
+const getAllReservations = function (guest_id = 1, limit = 2) {
 
   const queryString = `SELECT reservations.*, properties.*,
   AVG(property_reviews.rating)
@@ -108,8 +108,8 @@ const getAllReservations = function (guest_id = 123, limit = 5) {
   return pool
     .query(queryString, [guest_id, limit])
     .then((res) => {
-      console.log(res.rows[0]);
-      return res.rows[0];
+      console.log(res.rows);
+      return res.rows;
     })
     .catch((err) => {
       console.log(err.message);
